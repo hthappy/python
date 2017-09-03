@@ -43,4 +43,6 @@ for i in range(1,164):
         if content:
             print '正在保存第 %s 页的 %s' %(i,title)
             cur.execute("insert into movie(id,title,content,link) values (NULL ,'%s' ,'%s' ,'%s')" %(title,content.replace("'",r"\'"),link)) #执行SQL语句
-            conn.commit() 
+            conn.commit()
+
+print '采集结束！'
