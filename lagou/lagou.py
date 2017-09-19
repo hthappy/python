@@ -36,7 +36,6 @@ n = 1
 
 for page in range(1,31):
     for job in getJoblist(page=page):
-        print(job)
         sheet1.write(n, 0, job['companyShortName'])
         sheet1.write(n, 1, job['city'])
         sheet1.write(n, 2, job['positionName'])
