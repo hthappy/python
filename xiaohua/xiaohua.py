@@ -1,8 +1,6 @@
 # coding:utf-8
 import urllib
 import re
-import os
-import time
 
 
 
@@ -34,7 +32,7 @@ def images(picurl):
 
 
 
-for i in range(28,44):
+for i in range(0,44):
     a = i + 1
     print '###################'
     print '正在爬取第 %s 页' % a
