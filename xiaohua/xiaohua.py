@@ -16,13 +16,19 @@ def getList(page):
 def images(picurl):
     html = urllib.urlopen(picurl).read().decode('gbk', 'ignore').encode('utf-8', 'ignore')
     reg = r'<a target="_blank" class="imglink" href="(.*?)"><img alt='
-    reg = re.compile(reg)
-    imglink = re.findall(reg,html)
-    html = urllib.urlopen(imglink[0]).read().decode('gbk', 'ignore').encode('utf-8', 'ignore')
-    reg = r'class="inner"><a href="(.*?)" class="">'
-    reg = re.compile(reg)
-    imgurl = re.findall(reg,html)
-    return imgurl
+    regs = r'<img src=\\\'(.*?)\\\' alt=\\\''
+    if re.findall(r'imglink',html) != []:  #判断是否正常页面
+        reg = re.compile(reg)
+        imglink = re.findall(reg, html)
+        html = urllib.urlopen(imglink[0]).read().decode('gbk', 'ignore').encode('utf-8', 'ignore')
+        reg = r'class="inner"><a href="(.*?)" class="">'
+        reg = re.compile(reg)
+        imgurl = re.findall(reg, html)
+        return imgurl
+    else:
+        regs = re.compile(regs)
+        imgurl = re.findall(regs,html)
+        return imgurl
 
 
 
@@ -46,6 +52,7 @@ for i in range(0,44):
                 urllib.urlretrieve(imgurls, imgdir + '%s.jpg' % num)
                 print '%s 保存成功' % title
                 num += 1
+
 
 
 
