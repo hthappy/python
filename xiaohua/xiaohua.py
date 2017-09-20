@@ -50,7 +50,6 @@ def images(picurl):
 
 
 
-
 for i in range(0,44):
     a = i + 1
     print '###################'
@@ -59,8 +58,12 @@ for i in range(0,44):
     for picurl,title in getList(page=i): #获取相册地址和相册名
         num = 1
         for imgurl in images(picurl=picurl): #获取相册集
-            imgurl = imgurl.split('/')[-1] #分割获取到的地址，取最后一个值，统一图片地址格式。
-            imgurls = 'http://www.xiaohuar.com/d/file/%s' %imgurl #照片完整地址
+            imgurls = imgurl.split('/')[-1] #分割获取到的地址，取最后一个值，统一图片地址格式。
+            imgurls = 'http://www.xiaohuar.com/d/file/%s' %imgurls #照片完整地址
+            if urllib.urlopen(imgurls).code == 200: #判断图片地址是否有效
+                pass
+            else:
+                imgurls = 'http://www.xiaohuar.com%s' %imgurl
             imgdir = '/Users/tao/Pictures/校花/%s/' % title  # 保存目录
             if os.path.isdir(imgdir):
                 urllib.urlretrieve(imgurls, imgdir + '%s.jpg' % num)
@@ -71,5 +74,7 @@ for i in range(0,44):
                 urllib.urlretrieve(imgurls, imgdir + '%s.jpg' % num)
                 print '%s 保存成功' % title
 
+print '----------------------'
 print '采集完毕，退出！'
+print '----------------------'
 
