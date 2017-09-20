@@ -73,6 +73,7 @@ for i in range(0,44):
                 os.makedirs(imgdir)
                 urllib.urlretrieve(imgurls, imgdir + '%s.jpg' % num)
                 print '%s 保存成功' % title
+                num += 1
 
 print '----------------------'
 print '采集完毕，退出！'
